@@ -1,5 +1,5 @@
 {
-  "homepage": "https://missphumby.github.io/React-send-it",
+  "homepage": "https://missphumby.github.io/send-it-React",
   "name": "my-context",
   "version": "0.1.0",
   "private": true,
@@ -24,9 +24,9 @@
     "styled-components": "^5.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -45,5 +45,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }
