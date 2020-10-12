@@ -1,6 +1,8 @@
 import React, {useEffect, useState, useContext} from "react";
 import { Link, NavLink } from "react-router-dom";
 import authContext from '../store'
+import sendLogo from '../assets/send-logo.png'
+
 
 
  const LoginHeader = () => {      
@@ -9,7 +11,7 @@ import authContext from '../store'
     <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-dark ">
       <Link className="navbar-brand" to="/">
         <img
-          src="images/send-logo.png"
+          src={sendLogo}
           className="img-fluid"
           width="180"
           height="60"

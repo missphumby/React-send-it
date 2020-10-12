@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import banner1 from '../assets/banner-1.jpg'
+import banner2 from '../assets/banner-2.jpg'
+import banner3 from '../assets/banner-3.jpg'
 
 const Home = () => {
   
@@ -18,7 +21,7 @@ const Home = () => {
         <div className="carousel-item active">
           <img
             className="d-block w-100"
-            src="images/banner-1.jpg"
+            src={banner1}
             alt="First slide"
           />
           <div className="carousel-caption d-md-block">
@@ -38,7 +41,7 @@ const Home = () => {
         <div className="carousel-item">
           <img
             className="d-block w-100"
-            src="images/banner-2.jpg"
+            src={banner2}
             alt="Second slide"
           />
           <div className="carousel-caption d-md-block">
@@ -58,7 +61,7 @@ const Home = () => {
         <div className="carousel-item">
           <img
             className="d-block w-100"
-            src="images/banner-3.jpg"
+            src={banner3}
             alt="Third slide"
           />
           <div className="carousel-caption d-md-block">

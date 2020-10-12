@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import footerLogo from '../assets/footerlogo.png'
 const Footer = () => {
   return (
     <div className="bg-dark text-light" style={{height: '200px'}}>
       <footer className="container py-5">
         <div className="row">
           <div className="col-12 col-md">
-            <img src="images/footerlogo.png" width="30" height="40" className="App-logo" alt="" />
+            <img src={footerLogo} width="30" height="40" className="App-logo" alt="" />
             <small className="d-block mb-3 text-light">Copyright &copy; 2019. <br></br>Developed by Funby!</small>
           </div>
           <div className="col-6 col-md">

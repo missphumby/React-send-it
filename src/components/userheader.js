@@ -4,7 +4,7 @@ import { authreducer, initialAuthState } from '../reducer/authreducers';
 import {useReducer} from 'react'
 import jwtDecode from 'jwt-decode'
 import authContext from "../store";
-
+import sendLogo from '../assets/send-logo.png'
 const UserHeader = (props) => {
   
 const {state, dispatch} = React.useContext(authContext)
@@ -21,7 +21,7 @@ const {state, dispatch} = React.useContext(authContext)
     <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-dark ">
       <Link className="navbar-brand" to="/">
         <img
-          src="images/send-logo.png"
+          src={sendLogo}
           className="img-fluid"
           width="180"
           height="60"

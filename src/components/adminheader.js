@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import sendLogo from '../assets/send-logo.png'
 
 const AdminHeader = (props) => {
   
@@ -16,7 +17,7 @@ const AdminHeader = (props) => {
     <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-dark ">
       <Link className="navbar-brand" to="/">
         <img
-          src="images/send-logo.png"
+          src={sendLogo}
           className="img-fluid"
           width="180"
           height="60"
