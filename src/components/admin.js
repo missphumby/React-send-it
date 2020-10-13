@@ -280,7 +280,7 @@ const handleClosed = () => {
                                     onClick={() => handleEdit(item.orderId)}
                                     className="btn btn-secondary p-1 pl-2"
 
-                                    disabled={item.status === "Cancelled" ? true : false}
+                                    // disabled={item.status === "Cancelled" ? true : false}
                                 >
                                     <i className="fa fa-edit" />
                                 </button>
@@ -289,7 +289,7 @@ const handleClosed = () => {
                                 <button
                                     onClick={() => handleCancel(item.orderId)}
                                     className="btn btn-danger p-1"
-                                    disabled={item.status === "Cancelled" ? true : false}
+                                    // disabled={item.status === "Cancelled" ? true : false}
                                 >
                                     <i className="fa fa-trash" />
                                 </button>

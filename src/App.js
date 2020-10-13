@@ -36,7 +36,7 @@ const ContentRoutes =()=>{
         path="/profile"><Profile/></Route>
         <Route
          path="/admin"><Admin/></Route>
-        <Home exact path='/' />
+        <Route path="/"><Home /></Route>
         <Route
         path="/userheader"><UserHeader/></Route>
         <Route
@@ -57,7 +57,6 @@ const [user, setUser] = useState('')
                 console.log(user)
         }catch(ex){}
         },[])
-      
 
         const [state, dispatch] = useReducer(authreducer, initialAuthState);
 	return (
