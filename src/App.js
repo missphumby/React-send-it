@@ -1,7 +1,7 @@
 
 import React, { useReducer, useEffect, useState } from 'react';
 // import {Router} from 'react-router-dom';
-import {BrowserRouter as Router, 
+import {HashRouter, 
         Switch, 
         Route, 
 } from "react-router-dom"
@@ -21,32 +21,16 @@ import { authreducer, initialAuthState } from './reducer/authreducers';
 import jwtDecode from 'jwt-decode'
 // import {toast, ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+// import { ConnectedRouter} from 'connected-react-router';
+import { createBrowserHistory } from "history";
+
+const history = createBrowserHistory();
 
 
-const ContentRoutes =()=>{
-        return(
-<Switch>
-       <Route
-         path="/register"><Register/></Route>
-        <Route
-        path="/login"><Login/></Route>
-        <Route
-        path="/createOrder"><CreateOrder/></Route>
-        <Route
-        path="/profile"><Profile/></Route>
-        <Route
-         path="/admin"><Admin/></Route>
-        <Route path="/"><Home /></Route>
-        <Route
-        path="/userheader"><UserHeader/></Route>
-        <Route
-        path="/loginheader"><LoginHeader/></Route>
-        <Route
-        path="/adminheader"><AdminHeader/></Route>
-     
-        </Switch>          
-        )
-}
+// const ContentRoutes =()=>{
+//         return(
+//         )
+// }
 
 function App() {
 const [user, setUser] = useState('')
@@ -60,18 +44,35 @@ const [user, setUser] = useState('')
 
         const [state, dispatch] = useReducer(authreducer, initialAuthState);
 	return (
-      <Provider value={{state, dispatch}}>
-     <ToastContainer/>
-      <Router > 
-      {/* <Header /> */}
+//       <Provider value={{state, dispatch}}>
+      <HashRouter 
+//       history={history} 
+      basename="/React-send-it"> 
+      <ToastContainer/>
       <div className="App">{(!user) ? <LoginHeader /> : <UserHeader user={user} />}</div>
-      <ContentRoutes />
+      <Switch>
+       <Route
+         path="/register"><Register/></Route>
+        <Route
+        path="/login"><Login/></Route>
+        <Route
+        path="/createOrder"><CreateOrder/></Route>
+        <Route
+        path="/profile" component={Profile}/>
+        <Route
+         path="/admin" component={Admin} />
+        <Route exact path="/" component={Home}/>
+        <Route 
+        path="/userheader"><UserHeader/></Route>
+        <Route
+        path="/loginheader"><LoginHeader/></Route>
+        <Route
+        path="/adminheader"><AdminHeader/></Route>
+        </Switch>          
       <Footer />
-      </Router>
-      
-      </Provider>
+      </HashRouter>
+//       {/* </Provider>  */}
 	);
 }
 
 export default App;
-

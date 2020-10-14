@@ -43,8 +43,8 @@ const AdminHeader = (props) => {
             </NavLink>
             <NavLink
               className="nav-item nav-link btn btn-danger"
-              to="/logout"
               onClick={logout}
+              to="/home"
             >
               Logout
             </NavLink>

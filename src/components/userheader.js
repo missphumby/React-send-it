@@ -50,8 +50,8 @@ const {state, dispatch} = React.useContext(authContext)
             </NavLink>
             <NavLink
               className="nav-item nav-link btn btn-danger"
-              to="/logout"
               onClick={logout}
+              to="/"
             >
               Logout
             </NavLink>
