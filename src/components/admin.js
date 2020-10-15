@@ -4,11 +4,6 @@ import authContext from '../store'
 import { toast } from 'react-toastify'
 import Modal from "react-bootstrap/Modal"
 import Button from "react-bootstrap/Button"
-// import FormGroup from "react-bootstrap/Form"
-// import ControlLabel from "react-bootstrap/Form"
-// import FormControl from "react-bootstrap/Form"
-// import DropdownButton from 'react-bootstrap/DropdownButton';
-// import Dropdown from 'react-bootstrap/Dropdown'
 import Select from "react-select";
 import styled from "styled-components";
 
@@ -16,9 +11,6 @@ import styled from "styled-components";
 
 const Admin = () => {
     const { state, dispatch } = useContext(authContext);
-
-    // const token = localStorage.getItem("token");
-
     const [msg, setMsg] = useState('')
     const [orders, setOrders] = useState([]);
     const [user, setUser] = useState({});
@@ -31,14 +23,11 @@ const Admin = () => {
       const [orderId, setOrderId] = useState('')
 const [selected, setSelected] = useState(false)
 
-
+//edit modal at the click of savechanges button
     const handleClose = () => {
         if(newLoc !== ""){
-            // handleNewLoc()
         const url = "https://send-it-app.herokuapp.com"
-        //  const newlocation = window.prompt("Enter new Destination address")
-
-        fetch(`${url}/order/${orderId}`, {
+         fetch(`${url}/order/${orderId}`, {
             method: "PATCH",
             headers: {
                 "Content-type": "application/json"
@@ -62,23 +51,18 @@ const [selected, setSelected] = useState(false)
           }
 
     }
-                            //    window.location.reload()
-    const handleShow = () => setShow(true)
-
-    
+                            
+//handle changes
+    const handleShow = () => setShow(true)    
     const handleShowed = () => setShowed(true);
-
     const handleNewLoc = (event) => {
         setNewLoc(event.target.value)
     };
     const handleNewStat = (event) => {
         setNewStat(event.target.value)
     }
-
-    const toggleOpen = () =>setIsopen(!isOpen);
-      
-    
-   const   onSelectChange = (option) => {
+   const toggleOpen = () =>setIsopen(!isOpen);
+      const   onSelectChange = (option) => {
         setIsopen( !isOpen )
         setOption(option);
         setNewStat(option)
@@ -86,6 +70,7 @@ const [selected, setSelected] = useState(false)
       };
 
 
+      //fetch user
     useEffect(() => {
 
 
@@ -122,7 +107,7 @@ const [selected, setSelected] = useState(false)
                 })
                 .catch(err => console.log(err));
         } catch (ex) {
-            // this.props.history.push("/");
+            this.props.history.push("/");
         }
     }, []);
 
@@ -182,7 +167,7 @@ const Dropdown = ({ children, target }) => (
     {children}
   </div>
 );
-
+//edit status
 const handleClosed = () => {
     if(Select){
         const url = "https://send-it-app.herokuapp.com"

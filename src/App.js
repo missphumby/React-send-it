@@ -4,7 +4,7 @@ import React, { useReducer, useEffect, useState } from 'react';
 import {HashRouter, 
         Switch, 
         Route, 
-        BrowserRouter 
+        Redirect 
 } from "react-router-dom"
 import {ToastContainer} from "react-toastify"
 import { Provider } from './store';
@@ -20,18 +20,9 @@ import Register from './components/register';
 import CreateOrder from './components/createOrder'
 import { authreducer, initialAuthState } from './reducer/authreducers';
 import jwtDecode from 'jwt-decode'
-// import {toast, ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-// import { ConnectedRouter} from 'connected-react-router';
-import { createBrowserHistory } from "history";
 
-const history = createBrowserHistory({
-        basename: process.env.PUBLIC_URL,
-      });
-// const ContentRoutes =()=>{
-//         return(
-//         )
-// }
+
 
 function App() {
 const [user, setUser] = useState('')
@@ -46,36 +37,52 @@ const [user, setUser] = useState('')
         const [state, dispatch] = useReducer(authreducer, initialAuthState);
 	return (
       <Provider value={{state, dispatch}}>
-{/* //       <BrowserRouter 
-//       history={history} 
-//       basename={process.env.PUBLIC_URL}
-//       > 
-<div> */}
       <ToastContainer/>
       <div className="App">{(!user) ? <LoginHeader /> : <UserHeader user={user} />}</div>
       <Switch>
-      <Route exact path="/" component={Home}/>
-       <Route
-         path="/register"><Register/></Route>
+           <Route
+         path="/register"
+         render={props => {
+                if (!user) return <Register {...props} />;
+                return <Redirect to="/profile" />;
+              }}/>
         <Route
-        path="/login"><Login/></Route>
+        path="/login"
+        render={props => {
+                if (!user) return <Login {...props} />;
+                return <Redirect to="/profile" />;
+              }}/>
         <Route
-        path="/createOrder" component= {CreateOrder}/>
+        path="/createOrder" render={props => {
+                if (!user) return <Redirect to="/" />;
+                return <CreateOrder {...props} />;
+              }}/>
         <Route
         path="/profile" component={Profile}/>
         <Route
-         path="/admin" component={Admin} />
+         path="/admin" 
+         component = {Admin}
+        //  render={props => {
+        //         if (!user) return <Redirect to="/" />;
+        //         return <Admin {...props} />;
+        //       }} 
+              />
         <Route 
         path="/userheader"><UserHeader/></Route>
         <Route
         path="/loginheader"><LoginHeader/></Route>
         <Route
         path="/adminheader"><AdminHeader/></Route>
+        <Route exact path="/" 
+                      render={props => {
+                        if (!user) return <Home {...props} />;
+                        return <Redirect to="/profile" />;
+                      }}/>
+  
         </Switch>          
       <Footer />
-      {/* </BrowserRouter> */}
         </Provider> 
-// {/* </div> */}
+
 	);
 }
 
