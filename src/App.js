@@ -4,6 +4,7 @@ import React, { useReducer, useEffect, useState } from 'react';
 import {HashRouter, 
         Switch, 
         Route, 
+        BrowserRouter 
 } from "react-router-dom"
 import {ToastContainer} from "react-toastify"
 import { Provider } from './store';
@@ -24,9 +25,9 @@ import 'react-toastify/dist/ReactToastify.css';
 // import { ConnectedRouter} from 'connected-react-router';
 import { createBrowserHistory } from "history";
 
-const history = createBrowserHistory();
-
-
+const history = createBrowserHistory({
+        basename: process.env.PUBLIC_URL,
+      });
 // const ContentRoutes =()=>{
 //         return(
 //         )
@@ -44,24 +45,26 @@ const [user, setUser] = useState('')
 
         const [state, dispatch] = useReducer(authreducer, initialAuthState);
 	return (
-//       <Provider value={{state, dispatch}}>
-      <HashRouter 
+      <Provider value={{state, dispatch}}>
+{/* //       <BrowserRouter 
 //       history={history} 
-      basename="/React-send-it"> 
+//       basename={process.env.PUBLIC_URL}
+//       > 
+<div> */}
       <ToastContainer/>
       <div className="App">{(!user) ? <LoginHeader /> : <UserHeader user={user} />}</div>
       <Switch>
+      <Route exact path="/" component={Home}/>
        <Route
          path="/register"><Register/></Route>
         <Route
         path="/login"><Login/></Route>
         <Route
-        path="/createOrder"><CreateOrder/></Route>
+        path="/createOrder" component= {CreateOrder}/>
         <Route
         path="/profile" component={Profile}/>
         <Route
          path="/admin" component={Admin} />
-        <Route exact path="/" component={Home}/>
         <Route 
         path="/userheader"><UserHeader/></Route>
         <Route
@@ -70,8 +73,9 @@ const [user, setUser] = useState('')
         path="/adminheader"><AdminHeader/></Route>
         </Switch>          
       <Footer />
-      </HashRouter>
-//       {/* </Provider>  */}
+      {/* </BrowserRouter> */}
+        </Provider> 
+// {/* </div> */}
 	);
 }
 
