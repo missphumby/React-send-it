@@ -58,14 +58,17 @@ const [user, setUser] = useState('')
                 return <CreateOrder {...props} />;
               }}/>
         <Route
-        path="/profile" component={Profile}/>
+        path="/profile" render={props => {
+                if (!user) return <Redirect to="/" />;
+                return <Profile {...props} />;
+              }}/>
         <Route
          path="/admin" 
          component = {Admin}
-        //  render={props => {
-        //         if (!user) return <Redirect to="/" />;
-        //         return <Admin {...props} />;
-        //       }} 
+         render={props => {
+                if (!user) return <Redirect to="/" />;
+                return <Admin {...props} />;
+              }} 
               />
         <Route 
         path="/userheader"><UserHeader/></Route>
