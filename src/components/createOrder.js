@@ -20,37 +20,41 @@ const CreateOrder = () =>{
       recMobileNo: "",
       isSubmitting: false,
       errorMessage: null,
-      autocompleteInput: React.createRef(),
-      autocompleteDest: React.createRef()
-  };
+       };
   const [data, setData] = React.useState(initialState);
 
 
   useEffect( ()=> {
-    data.pickup = new google.maps.places.Autocomplete(data.autocompleteInput.current,
-      {"types": ["geocode"]});
-
-  data.pickup.addListener('place_changed', {handlePlaceChanged});
-
-  data.destination = new google.maps.places.Autocomplete(data.autocompleteDest.current,
-    {"types": ["geocode"]});
-
-data.destination.addListener('place_changed', {handlePlaceChanged});
-
-
-  },[]);
-
+ 
+    let    autocomplete = new google.maps.places.Autocomplete(
+          (document.getElementById('pickup')),
   
+          { types: ['geocode']});
+  
+  
+      google.maps.event.addListener(autocomplete, 'place_changed', function() {
+  
+        fillInAddress(autocomplete);
+  
+      });
+  
+      let autocomplete2 = new 
+  
+    google.maps.places.Autocomplete(document.getElementById('destination'), { 
+    types: [ 'geocode' ] });
+  
+      google.maps.event.addListener(autocomplete2, 'place_changed', function() {
+  
+        fillInAddress(autocomplete2);
+  
+      });
+      const fillInAddress=()=>{
+        setData({...data, pickup: document.getElementById("pickup").value, destination: document.getElementById('destination').value});
+      }
    
-  const handlePlaceChanged=()=>{
-    const place = data.pickup.getPlace();
-    this.props.onPlaceLoaded(place);
-    const destPlace = data.destination.getPlace();
-    this.props.onPlaceLoaded(destPlace);
-
-  };
-
-  const handleChange = event => {
+          },[]);
+  
+   const handleChange = event => {
     setData({
       ...data,
      [event.target.name]: event.target.value
@@ -113,7 +117,7 @@ data.destination.addListener('place_changed', {handlePlaceChanged});
             autoFocus
             defaultValue={data.pickup}
             onChange={handleChange}
-            ref={data.autocompleteInput}
+            placeholder="Enter a location"
             name="pickup"
             id="pickup"
             type="text"
@@ -127,7 +131,7 @@ data.destination.addListener('place_changed', {handlePlaceChanged});
           <input
             value={data.destination}
             onChange={handleChange}
-            ref={data.autocompleteDest}
+            placeholder="Enter a destination"
             name="destination"
             type="text"
             className="form-control"
