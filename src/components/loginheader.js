@@ -1,6 +1,5 @@
 import React, {useEffect, useState, useContext} from "react";
 import { Link, NavLink } from "react-router-dom";
-import authContext from '../store'
 import sendLogo from '../assets/send-logo.png'
 
 

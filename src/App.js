@@ -1,13 +1,13 @@
 
-import React, { useReducer, useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 // import {Router} from 'react-router-dom';
+
 import {HashRouter, 
         Switch, 
         Route, 
         Redirect 
 } from "react-router-dom"
 import {ToastContainer} from "react-toastify"
-import { Provider } from './store';
 import Admin from './components/admin'
 import Login from "./components/login";
 import Home from "./components/home";
@@ -18,10 +18,10 @@ import LoginHeader from './components/loginheader'
 import AdminHeader from './components/adminheader'
 import Register from './components/register';
 import CreateOrder from './components/createOrder'
-import { authreducer, initialAuthState } from './reducer/authreducers';
 import jwtDecode from 'jwt-decode'
 import 'react-toastify/dist/ReactToastify.css';
-
+import ForgotPassword from './components/ForgotPassword'
+import ResetPassword from './components/reset'
 
 
 function App() {
@@ -34,12 +34,14 @@ const [user, setUser] = useState('')
         }catch(ex){}
         },[])
 
-        const [state, dispatch] = useReducer(authreducer, initialAuthState);
+        // const [state, dispatch] = useReducer(authreducer, initialAuthState);
 	return (
-      <Provider value={{state, dispatch}}>
+      <div>
       <ToastContainer/>
       <div className="App">{(!user) ? <LoginHeader /> : <UserHeader user={user} />}</div>
       <Switch>
+        <Route exact path="/ForgotPassword" component={ForgotPassword}/>
+        <Route exact path="/reset/:token" component={ResetPassword}/>
            <Route
          path="/register"
          render={props => {
@@ -64,7 +66,6 @@ const [user, setUser] = useState('')
               }}/>
         <Route
          path="/admin" 
-         component = {Admin}
          render={props => {
                 if (!user) return <Redirect to="/" />;
                 return <Admin {...props} />;
@@ -84,7 +85,7 @@ const [user, setUser] = useState('')
   
         </Switch>          
       <Footer />
-        </Provider> 
+        </div> 
 
 	);
 }

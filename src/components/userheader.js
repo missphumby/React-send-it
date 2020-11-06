@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { authreducer, initialAuthState } from '../reducer/authreducers';
 import {useReducer} from 'react'
 import jwtDecode from 'jwt-decode'
-import authContext from "../store";
+
+
+
+
 import sendLogo from '../assets/send-logo.png'
 const UserHeader = (props) => {
-  
-const {state, dispatch} = React.useContext(authContext)
-
   const logout = () => {
     
     // dispatch({

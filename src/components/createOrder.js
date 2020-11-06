@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import { toast } from "react-toastify";
-import authContext from '../store'
+
 
 
 
@@ -11,7 +11,7 @@ const google = window.google ? window.google : {}
 
 const CreateOrder = () =>{
 
-  const  {dispatch}  = React.useContext(authContext);
+  // const  {dispatch}  = React.useContext(authContext);
 
   const initialState = {
       pickup: "",
@@ -100,10 +100,7 @@ data.destination.addListener('place_changed', {handlePlaceChanged});
           }            })
         .catch(error => {
           console.log(error)
-          dispatch({
-            type: "LOGIN_ERROR",
-            payload: error
-          });
+          
         })
       }
 

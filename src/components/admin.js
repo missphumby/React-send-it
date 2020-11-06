@@ -1,6 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react'
 import jwtDecode from "jwt-decode"
-import authContext from '../store'
 import { toast } from 'react-toastify'
 import Modal from "react-bootstrap/Modal"
 import Button from "react-bootstrap/Button"
@@ -10,7 +9,8 @@ import styled from "styled-components";
 
 
 const Admin = () => {
-    const { state, dispatch } = useContext(authContext);
+    // const { state, dispatch } = useContext(authContext);
+
     const [msg, setMsg] = useState('')
     const [orders, setOrders] = useState([]);
     const [user, setUser] = useState({});
@@ -80,7 +80,7 @@ const [selected, setSelected] = useState(false)
             setUser(user);
             const userId = user.id
             console.log("llll", user)
-            console.log(state)
+    
             const url = "https://send-it-app.herokuapp.com"
 
             //       dispatch({

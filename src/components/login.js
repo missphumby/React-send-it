@@ -1,10 +1,9 @@
 import React from "react";
-import authContext from '../store'
 import {Link} from 'react-router-dom'
 import {toast} from 'react-toastify'
 
 const Login = () => {
-    const  {dispatch}  = React.useContext(authContext);
+
   const initialState = {
       email: "",
       password: "",
@@ -65,8 +64,11 @@ const handleChange = event => {
       
                    if (res.success) {
                     console.log("res2", res.success);
-                    // localStorage.setItem("firstname", res.data.firstname);
                     localStorage.setItem("userId", res.data._id);
+                    // dispatch({
+                    //   type: "LOGin_SUCCESS",
+                    //   payload: res.data.user
+                    // })
                     console.log("got here", res.data.roles[0])
                     if (res.data.roles[0].name == "user") {
                       window.location.href = "/profile";
@@ -129,13 +131,17 @@ return (
 
         <button type="submit" className="btn btn-primary">
           Submit
-        </button>
-        <p className="mt-4 text-right">
+        </button><br/>
+        <div className="row">
+      <p> <Link className="col-md-4 mt-4 text-left" to="/ForgotPassword"  style={{color:"blue"}}>
+          Forgot password?{" "}
+          </Link></p>
+        <p className="col-md-8 mt-4 text-right">
           Don't have an account?{" "}
           <Link className="btn btn-primary" to="/register">
             Register
           </Link>
-        </p>
+        </p></div>
       </form>
       
         </div>

@@ -1,17 +1,16 @@
 import React from "react";
-import authContext from '../store'
 import {Link} from 'react-router-dom'
 import {toast, ToastContainer} from 'react-toastify'
-// import { authreducer, initialAuthState } from './reducer/authreducers';
+
 
 
  const Register = () => {
-    const  {dispatch}  = React.useContext(authContext);
 
   const initialState = {
     firstname: "",
       lastname: "",
       email: "",
+      username: "",
       mobile: "",
     password: "",
     isSubmitting: false,
@@ -43,6 +42,7 @@ const handleChange = event => {
           firstname: data.firstname,
           lastname:data.lastname,
         email: data.email,
+        username: data.username,
         password: data.password,
         mobile: data.mobile
       })
@@ -72,10 +72,7 @@ const handleChange = event => {
               
               localStorage.setItem("userId", res.data._id);
               window.location = "/profile";
-              // dispatch({
-              //   type: "LOGIN_SUCCESS",
-              //   payload: res     
-            // })
+            
             } else if (res.error) {
               console.log("error", res.err);
               toast.error(res.err)
@@ -83,10 +80,7 @@ const handleChange = event => {
           })
       .catch(error => {
         console.log(error)
-        // dispatch({
-        //   type: "LOGIN_FAIL",
-        //   payload: error
-        // });
+        
       })
     }
   })
@@ -133,7 +127,18 @@ return (
             aria-describedby="emailHelp"
             required
           />
-          
+          </div>
+          <div className="form-group">
+          <label htmlFor="email">Username</label>
+          <input
+            value={data.username}
+            onChange={handleChange}
+            name="username"
+            type="text"
+            className="form-control"
+            id="username"
+            required
+          />
         </div>
         <div className="form-group">
           <label htmlFor="mobile">Mobile Number</label>

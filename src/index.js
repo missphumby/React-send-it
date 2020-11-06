@@ -5,17 +5,17 @@ import App from './App';
 // import {BrowserRouter} from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter} from "react-router-dom"
+import {Router} from "react-router-dom"
 import { createBrowserHistory } from "history";
 
 const history = createBrowserHistory({
         basename: process.env.PUBLIC_URL,
       });
 ReactDOM.render(
-  <BrowserRouter history={history}
+  <Router history={history}
   basename={process.env.PUBLIC_URL}>
     <App />
-     </BrowserRouter>,
+     </Router>,
   document.getElementById('root')
 );
 

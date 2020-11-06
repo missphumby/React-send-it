@@ -1,13 +1,12 @@
 import React, { useEffect, useContext, useState, useRef} from 'react'
 import jwtDecode from "jwt-decode"
-import authContext from '../store'
 import {toast} from 'react-toastify'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
 
 const Profile = () =>{
-  const {state, dispatch } = useContext(authContext);
+
 
 
   // const token = localStorage.getItem("token");
@@ -26,7 +25,6 @@ const Profile = () =>{
   
     useEffect(()=> {   
       
-     
         try {
           const jwt = localStorage.getItem("token");
           const user = jwtDecode(jwt);
@@ -36,10 +34,7 @@ const Profile = () =>{
           // console.log(state)
           const url ="https://send-it-app.herokuapp.com"
           
-    //       dispatch({
-    // type: "LOGIN_SUCCESS",
-    //      });
-          fetch(`${url}/order/${userId}`, {
+              fetch(`${url}/order/${userId}`, {
             method: "GET",
             headers: {
               Authorization: jwt
