@@ -31,7 +31,7 @@ const Profile = () =>{
           setUser( user );
           const userId = user.id
           console.log("llll", user)
-          // console.log(state)
+          console.log(user)
           const url ="https://send-it-app.herokuapp.com"
           
               fetch(`${url}/order/${userId}`, {

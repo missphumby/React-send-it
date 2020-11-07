@@ -22,6 +22,7 @@ import jwtDecode from 'jwt-decode'
 import 'react-toastify/dist/ReactToastify.css';
 import ForgotPassword from './components/ForgotPassword'
 import ResetPassword from './components/reset'
+import UpdatePassword from './components/UpdatePassword'
 
 
 function App() {
@@ -42,6 +43,7 @@ const [user, setUser] = useState('')
       <Switch>
         <Route exact path="/ForgotPassword" component={ForgotPassword}/>
         <Route exact path="/reset/:token" component={ResetPassword}/>
+        <Route exact path="/updatePassword" component={UpdatePassword}/>
            <Route
          path="/register"
          render={props => {

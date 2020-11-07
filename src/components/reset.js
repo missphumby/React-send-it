@@ -58,7 +58,7 @@ export default class ResetPassword extends Component {
         });
       }
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error);
       this.setState({
         updated: false,
         isLoading: false,
@@ -104,7 +104,7 @@ export default class ResetPassword extends Component {
         });
       }
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error);
     }
   };
 

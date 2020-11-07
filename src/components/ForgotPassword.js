@@ -34,66 +34,68 @@ class ForgotPassword extends Component {
   };
 
   sendEmail = async (e) => {
+    const url = "https://send-it-app.herokuapp.com"
     e.preventDefault();
     const { email } = this.state;
+    console.log("got here>>>>", email)
     if (email === '') {
       this.setState({
         showError: false,
         messageFromServer: '',
-        showNullError: true,
+        showNullError: true
       });
     } else {
-      try {
-        const response = await axios.post(
-          'https://send-it-app.herokuapp.com/forgotPassword',
-          {
-            email,
-          },
-        );
-        console.log(response.data);
-        if (response.msg === 'recovery email sent') {
+      fetch(`${url}/forgotPassword`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({email})
+      })
+      .then(res => res.json())
+      .then(response => {
+        console.log("response", response)
+        if (response.message === 'recovery email sent') {
           this.setState({
             showError: false,
             messageFromServer: 'recovery email sent',
             showNullError: false,
           });
         }
-      } catch (error) {
-        console.error(error.data);
-        if (error.data === 'email not in db') {
-          this.setState({
-            showError: true,
-            messageFromServer: '',
-            showNullError: false,
-          });
-        }
-      }
+      })
+      .catch(err => {
+        this.setState({
+          showError: true,
+          messageFromServer: '',
+          showNullError: false,
+        });
+      })
     }
   };
 
   render() {
     const {
- email, messageFromServer, showNullError, showError 
-} = this.state;
+      email, messageFromServer, showNullError, showError
+    } = this.state;
 
     return (
       <div>
         <HeaderBar title={title} />
-        <div className="forgot" style={{height: "200px"}}>
-        <form className="profile-form" onSubmit={this.sendEmail}>
-          <TextField
-            style={inputStyle}
-            id="email"
-            label="email"
-            value={email}
-            onChange={this.handleChange('email')}
-            placeholder="Email Address"
-          />
-          <SubmitButtons
-            buttonStyle={forgotButton}
-            buttonText="Send Password Reset Email"
-          />
-        </form>
+        <div className="forgot" style={{ height: "200px" }}>
+          <form className="profile-form" onSubmit={this.sendEmail}>
+            <TextField
+              style={inputStyle}
+              id="email"
+              label="email"
+              value={email}
+              onChange={this.handleChange('email')}
+              placeholder="Email Address"
+            />
+            <SubmitButtons
+              buttonStyle={forgotButton}
+              buttonText="Send Password Reset Email"
+            />
+          </form>
         </div>
         {showNullError && (
           <div>
