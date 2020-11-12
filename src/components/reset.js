@@ -49,9 +49,9 @@ export default class ResetPassword extends Component {
         },
       });
       // console.log(response);
-      if (response.data.message === 'password reset link a-ok') {
+      if (response.message === 'password reset link a-ok') {
         this.setState({
-          username: response.data.username,
+          username: response.username,
           updated: false,
           isLoading: false,
           error: false,
@@ -92,7 +92,7 @@ export default class ResetPassword extends Component {
         },
       );
       console.log(response.data);
-      if (response.data.message === 'password updated') {
+      if (response.message === 'password updated') {
         this.setState({
           updated: true,
           error: false,
