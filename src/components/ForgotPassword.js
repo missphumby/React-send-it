@@ -3,7 +3,6 @@ import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import {
   LinkButtons,
-  
   SubmitButtons,
   registerButton,
   homeButton,

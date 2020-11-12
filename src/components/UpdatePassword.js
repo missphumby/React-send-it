@@ -14,7 +14,7 @@ import {
   loginButton,
   inputStyle,
 } from '../container';
-
+const url = "https://send-it-app.herokuapp.com"
 const loading = {
   margin: '1em',
   fontSize: '24px',
@@ -53,7 +53,7 @@ class UpdatePassword extends Component {
         },
       } = this.props;
       try {
-        const response = await axios.get('http://localhost:3003/findUser', {
+        const response = await axios.get(`${url}/findUser`, {
           params: {
             username,
           },
@@ -93,7 +93,7 @@ class UpdatePassword extends Component {
       const { username, password } = this.state;
       try {
         const response = await axios.put(
-          'http://localhost:3003/updatePassword',
+          `${url}/updatePassword`,
           {
             username,
             password,

@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
-
-import {
-  LinkButtons,
+ import  {LinkButtons,
   updateButton,
   homeButton,
   loginButton,
@@ -13,6 +11,8 @@ import {
   inputStyle,
   SubmitButtons,
 } from '../container';
+
+const url = "https://send-it-app.herokuapp.com"
 
 const loading = {
   margin: '1em',
@@ -36,6 +36,7 @@ export default class ResetPassword extends Component {
     };
   }
 
+  
   async componentDidMount() {
     const {
       match: {
@@ -43,7 +44,7 @@ export default class ResetPassword extends Component {
       },
     } = this.props;
     try {
-      const response = await axios.get("https://send-it-app.herokuapp.com/reset", {
+      const response = await axios.get(`${url}/reset`, {
         params: {
           resetPasswordToken: token,
         },
@@ -74,7 +75,7 @@ export default class ResetPassword extends Component {
   };
 
   updatePassword = async (e) => {
-      const url = "https://send-it-app.herokuapp.com"
+      
     e.preventDefault();
     const { username, password } = this.state;
     const {
